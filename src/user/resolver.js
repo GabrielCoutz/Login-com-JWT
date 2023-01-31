@@ -25,7 +25,7 @@ const updateUser = async (_, { id, data }, { updateUser }) => {
 const deleteUser = async (_, { id }, { deleteUser }) => {
   const response = await deleteUser(id);
   const json = await response.json();
-  return json;
+  return !!json;
 };
 
 export const userResolvers = {

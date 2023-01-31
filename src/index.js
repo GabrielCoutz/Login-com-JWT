@@ -2,6 +2,8 @@ import { ApolloServer, gql } from "apollo-server";
 import { GraphQLClient } from "graphql-request";
 import { userResolvers } from "./user/resolver";
 import { userTypeDef } from "./user/typedef";
+import { loginTypeDef } from "./login/typedef";
+import { loginResolvers } from "./login/resolver";
 import context from "./context";
 
 const rootTypeDefs = gql`
@@ -26,8 +28,8 @@ const rootResolvers = {
 
 const client = new GraphQLClient(process.env.BASE_URL);
 
-const typeDefs = [rootTypeDefs, userTypeDef];
-const resolvers = [rootResolvers, userResolvers];
+const typeDefs = [rootTypeDefs, userTypeDef, loginTypeDef];
+const resolvers = [rootResolvers, userResolvers, loginResolvers];
 
 const server = new ApolloServer({
   typeDefs,
