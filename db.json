@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "firstName": "Elisa",
+      "lastName": "Pereira",
+      "userName": "elisa.pereira"
+    },
+    {
+      "id": "2",
+      "firstName": "Enzo",
+      "lastName": "Barros",
+      "userName": "enzo_barros"
+    },
+    {
+      "id": "3",
+      "firstName": "Danilo",
+      "lastName": "Carvalho",
+      "userName": "danilo95"
+    },
+    {
+      "id": "4",
+      "firstName": "Talita",
+      "lastName": "Melo",
+      "userName": "talita.melo"
+    }
+  ]
+}
