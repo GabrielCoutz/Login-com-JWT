@@ -1,11 +1,15 @@
-import client from "./index";
+const request = (endpoint) => fetch(`${process.env.BASEURL}${endpoint}`);
 
-const fetchUsers = async (endpoint) => {
-  return await (await fetch(`${process.env.BASEURL}${endpoint}`)).json();
+const fetchUsers = async () => {
+  return await (await request("/users/")).json();
+};
+
+const fetchUser = async (id) => {
+  return await (await request(`/users/${id}`)).json();
 };
 
 const context = () => {
-  return { fetchUsers };
+  return { fetchUsers, fetchUser };
 };
 
 export default context;

@@ -27,8 +27,6 @@ const server = new ApolloServer({
   context,
 });
 
-server.listen(4003).then(({ url }) => {
-  console.log(`Server listening on url ${url}`);
-});
+server.listen(4003);
 
 export default client;
