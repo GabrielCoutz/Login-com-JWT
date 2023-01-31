@@ -24,7 +24,7 @@ const rootResolvers = {
   },
 };
 
-const client = new GraphQLClient(process.env.BASEURL);
+const client = new GraphQLClient(process.env.BASE_URL);
 
 const typeDefs = [rootTypeDefs, userTypeDef];
 const resolvers = [rootResolvers, userResolvers];

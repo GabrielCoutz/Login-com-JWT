@@ -1,51 +1,35 @@
 const request = (endpoint, options) =>
-  fetch(`${process.env.BASEURL}${endpoint}`, options);
+  fetch(`${process.env.BASE_URL}${endpoint}`, options);
 
-const fetchUsers = async () => {
-  return await (await request("/users/")).json();
-};
+const fetchUsers = () => request("/users/");
+const fetchUser = (id) => request(`/users/${id}`);
 
-const fetchUser = async (id) => {
-  return await (await request(`/users/${id}`)).json();
-};
-
-const createUser = async (data) => {
+const createUser = (data) => {
   const userName = `${data.firstName}.${data.lastName}`;
   data.userName = userName;
 
-  const response = await (
-    await request(`/users/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-  ).json();
-  return response;
+  return request(`/users/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
 };
 
-const updateUser = async (id, data) => {
-  const response = await (
-    await request(`/users/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-  ).json();
-  return response;
-};
+const updateUser = (id, data) =>
+  request(`/users/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
 
-const deleteUser = async (id) => {
-  const response = await (
-    await request(`/users/${id}`, {
-      method: "DELETE",
-    })
-  ).json();
-  return !!response;
-};
+const deleteUser = async (id) =>
+  request(`/users/${id}`, {
+    method: "DELETE",
+  });
 
 export default () => ({
   fetchUsers,
