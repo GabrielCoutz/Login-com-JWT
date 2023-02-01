@@ -6,6 +6,13 @@
       "userName": "nome de usuario 1",
       "passwordHash": "$2b$12$9RqEw.J/mQZkRItbxXhr0OzwOv3KbBzmy2Jcfo0m1anvFpMnD5QNK",
       "id": 1
+    },
+    {
+      "firstName": "nome",
+      "lastName": "sobrenome",
+      "userName": "nome.sobrenome",
+      "passwordHash": "$2b$12$NN/4TZJLaRSL6vLzTk8kmuFGD80ipipilSabA1p.ehPAsWYM6kjL2",
+      "id": 2
     }
   ]
 }
