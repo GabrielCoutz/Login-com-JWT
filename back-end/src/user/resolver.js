@@ -6,8 +6,9 @@ const users = async (_, __, { fetchUsers }) => {
   return json;
 };
 
-const user = async (_, { id }, { fetchUser }) => {
-  const response = await fetchUser(id);
+const user = async (_, __, { fetchUser, loggedUserId }) => {
+  checkUserIsLogged(loggedUserId);
+  const response = await fetchUser(loggedUserId);
   const json = await response.json();
   return json;
 };

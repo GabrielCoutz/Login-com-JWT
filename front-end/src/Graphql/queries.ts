@@ -1,8 +1,8 @@
 import { gql } from "graphql-request";
 
 export const GET_USER = gql`
-  query GET_USER($userId: ID!) {
-    user(id: $userId) {
+  query GET_USER {
+    user {
       firstName
       id
       lastName

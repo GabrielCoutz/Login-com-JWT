@@ -52,7 +52,7 @@ const authorizeUser = (req) => {
 export const checkUserIsLogged = (userId) => {
   if (!userId)
     throw new AuthenticationError(
-      "Você precisa estar logado para realizar esta ação!"
+      "Você precisa estar logado para realizar esta ação!!"
     );
 };
 
