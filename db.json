@@ -3,9 +3,16 @@
     {
       "firstName": "nome",
       "lastName": "sobrenome",
-      "userName": "nome.sobrenome",
+      "userName": "nome de usuario",
       "passwordHash": "$2b$12$QQabhgDRE7myXyXa1M.WzOTQ1aP8vX3ZCZrPnf3e87RLVfDwL9EHC",
       "id": 1
+    },
+    {
+      "firstName": "nome2",
+      "lastName": "sobrenome2",
+      "userName": "nome de usuario",
+      "passwordHash": "$2b$12$9RqEw.J/mQZkRItbxXhr0OzwOv3KbBzmy2Jcfo0m1anvFpMnD5QNK",
+      "id": 2
     }
   ]
 }

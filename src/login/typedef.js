@@ -6,7 +6,7 @@ export const loginTypeDef = gql`
   }
 
   type Login {
-    userName: String!
+    userId: ID!
     token: String!
   }
 

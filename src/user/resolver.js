@@ -1,3 +1,5 @@
+import { checkUserIsLogged, checkUserIsOwner } from "../context";
+
 const users = async (_, __, { fetchUsers }) => {
   const response = await fetchUsers();
   const json = await response.json();
@@ -16,13 +18,19 @@ const createUser = async (_, { data }, { createUser }) => {
   return json;
 };
 
-const updateUser = async (_, { id, data }, { updateUser }) => {
+const updateUser = async (_, { id, data }, { updateUser, loggedUserId }) => {
+  checkUserIsLogged(loggedUserId);
+  await checkUserIsOwner(id, loggedUserId);
+
   const response = await updateUser(id, data);
   const json = await response.json();
   return json;
 };
 
-const deleteUser = async (_, { id }, { deleteUser }) => {
+const deleteUser = async (_, { id }, { deleteUser, loggedUserId }) => {
+  checkUserIsLogged(loggedUserId);
+  await checkUserIsOwner(id, loggedUserId);
+
   const response = await deleteUser(id);
   const json = await response.json();
   return !!json;

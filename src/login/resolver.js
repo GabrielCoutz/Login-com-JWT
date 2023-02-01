@@ -14,13 +14,13 @@ const login = async (_, { data }, { fetchUser }) => {
 
   checkIfUserExists(user);
 
-  const [{ passwordHash }] = user;
+  const [{ passwordHash, id }] = user;
 
   const passwordIsValid = await comparePassword(password, passwordHash);
 
   if (passwordIsValid) {
-    const token = generateToken(userName);
-    return { userName, token };
+    const token = generateToken({ userId: id });
+    return { userId: id, token };
   } else throw new AuthenticationError("Credenciais incorretas!");
 };
 
