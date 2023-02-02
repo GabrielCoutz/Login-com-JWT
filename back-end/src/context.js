@@ -39,8 +39,10 @@ const createUser = async (data) => {
 };
 
 const updateUser = async (id, data) => {
-  data.passwordHash = await encryptPassword(data.password);
-  delete data.password;
+  if (data.password) {
+    data.passwordHash = await encryptPassword(data.password);
+    delete data.password;
+  }
   return request(`/users/${id}`, {
     method: "PATCH",
     headers: {
