@@ -1,16 +1,6 @@
 import React from "react";
 import styles from "../../styles/scss/Input.module.scss";
-
-interface InputModel {
-  type?: React.HTMLInputTypeAttribute;
-  placeholder?: string;
-  name: string;
-  id: string;
-  className?: string;
-  value?: string;
-  required?: boolean;
-  autoComplete?: string;
-}
+import { InputModel } from "../Interfaces/globa";
 
 const Input = ({
   type = "text",

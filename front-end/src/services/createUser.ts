@@ -1,7 +1,4 @@
-interface createUserResponse {
-  userName: string;
-  message: string;
-}
+import { createUserResponse, DataModel } from "../Interfaces/globa";
 
 export default async function (data: DataModel) {
   const response = await fetch("/api/user", {

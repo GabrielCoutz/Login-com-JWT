@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import LoginUser from "../../services/LoginUser";
 import getValues from "../../Utils/getValues";
-import Error from "../Error";
+import Error from "../UiElements/Error";
 import Form from "../Form";
 import Input from "../Input";
 import Label from "../Label";

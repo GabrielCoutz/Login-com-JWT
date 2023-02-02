@@ -57,7 +57,7 @@ const deleteUser = async (id) =>
     method: "DELETE",
   });
 
-const authorizeUser = (req) => {
+const getTokenFromHeader = (req) => {
   const { headers } = req;
   const { authorization } = headers;
 
@@ -73,7 +73,7 @@ const authorizeUser = (req) => {
 export const userIsLogged = (userId) => !!userId;
 
 export default ({ req }) => {
-  const loggedUserId = authorizeUser(req);
+  const loggedUserId = getTokenFromHeader(req);
   return {
     fetchUsers,
     fetchUser,

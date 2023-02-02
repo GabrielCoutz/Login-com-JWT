@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../styles/scss/Message.module.scss";
+import styles from "../../../styles/scss/Message.module.scss";
 
 const Message = ({ message }: { message: string }) => {
   if (message)

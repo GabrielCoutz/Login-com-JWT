@@ -1,13 +1,12 @@
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import Error from "../src/components/Error";
+import Error from "../src/components/UiElements/Error";
 import Form from "../src/components/Form";
 import FormGroup from "../src/components/Forms/FormGroup";
 import Input from "../src/components/Input";
 import Label from "../src/components/Label";
-import LogoutButton from "../src/components/LogoutButton";
-import Message from "../src/components/Message";
+import LogoutButton from "../src/components/UiElements/LogoutButton";
+import Message from "../src/components/UiElements/Message";
 import GetUser from "../src/services/GetUser";
 import updateUser from "../src/services/updateUser";
 import getValues from "../src/Utils/getValues";

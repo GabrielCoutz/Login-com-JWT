@@ -1,9 +1,6 @@
 import React from "react";
-import styles from "../../styles/scss/Error.module.scss";
-
-interface ErroModel {
-  message: string;
-}
+import { ErroModel } from "../../Interfaces/globa";
+import styles from "../../../styles/scss/Error.module.scss";
 
 const ErroIsFilled = (erro: any): erro is ErroModel => {
   if (erro?.message) return true;

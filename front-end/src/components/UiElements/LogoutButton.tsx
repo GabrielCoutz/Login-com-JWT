@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import styles from "../../styles/scss/LogoutButton.module.scss";
+import styles from "../../../styles/scss/LogoutButton.module.scss";
 
 function clearToken() {
   localStorage.removeItem("token");

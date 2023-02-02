@@ -1,10 +1,6 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import styles from "../../styles/scss/Form.module.scss";
-
-interface FormModel {
-  children: ReactNode;
-  onSubmit: React.FormEventHandler;
-}
+import { FormModel } from "../Interfaces/globa";
 
 const Form = ({ children, onSubmit }: FormModel) => {
   return (

@@ -1,3 +1,5 @@
+import { DataModel } from "../Interfaces/globa";
+
 export default (formData: FormData) => {
   const data: DataModel = {};
 

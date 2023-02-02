@@ -1,10 +1,5 @@
 import React from "react";
-
-export interface LabelModel {
-  htmlFor: string;
-  className?: string;
-  children?: string;
-}
+import { LabelModel } from "../Interfaces/globa";
 
 const Label = ({ htmlFor, className, children }: LabelModel) => {
   return (
