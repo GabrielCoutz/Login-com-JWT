@@ -9,7 +9,9 @@ const fetchUsers = () => request("/users/");
 const fetchUser = (id) => request(`/users/${id}`);
 
 const createUser = async (data) => {
-  const userName = `${data.firstName}.${data.lastName}`;
+  const userName = `${data.firstName.split(" ")[0]}.${
+    data.lastName.split(" ")[0]
+  }`;
   data.userName = userName;
   data.passwordHash = await encryptPassword(data.password);
   delete data.password;
@@ -40,6 +42,7 @@ const deleteUser = async (id) =>
 const authorizeUser = (req) => {
   const { headers } = req;
   const { authorization } = headers;
+
   try {
     const [_, token] = authorization.split(" ");
     const { userId } = jwt.verify(token, process.env.JWT_SECRET);

@@ -13,6 +13,14 @@
       "userName": "nome.sobrenome",
       "passwordHash": "$2b$12$NN/4TZJLaRSL6vLzTk8kmuFGD80ipipilSabA1p.ehPAsWYM6kjL2",
       "id": 2
+    },
+    {
+      "firstName": "nomed",
+      "lastName": "sobrenomef",
+      "email": "teste@gmail.com",
+      "userName": "nomef",
+      "passwordHash": "$2b$12$b9nAIJs2nqrQqkktOwLYYuiqHmSyoBNLm6TZrfiW2YrUblwLVImz.",
+      "id": 3
     }
   ]
 }

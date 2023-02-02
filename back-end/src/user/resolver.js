@@ -19,11 +19,10 @@ const createUser = async (_, { data }, { createUser }) => {
   return json;
 };
 
-const updateUser = async (_, { id, data }, { updateUser, loggedUserId }) => {
+const updateUser = async (_, { data }, { updateUser, loggedUserId }) => {
   checkUserIsLogged(loggedUserId);
-  await checkUserIsOwner(id, loggedUserId);
 
-  const response = await updateUser(id, data);
+  const response = await updateUser(loggedUserId, data);
   const json = await response.json();
   return json;
 };

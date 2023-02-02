@@ -7,9 +7,9 @@ const checkIfUserExists = (user) => {
 };
 
 const login = async (_, { data }, { fetchUser }) => {
-  const { userName, password } = data;
+  const { email, password } = data;
 
-  const response = await fetchUser(`?userName=${userName}`);
+  const response = await fetchUser(`?email=${email}`);
   const user = await response.json();
 
   checkIfUserExists(user);
@@ -20,7 +20,7 @@ const login = async (_, { data }, { fetchUser }) => {
 
   if (passwordIsValid) {
     const token = generateToken({ userId: id });
-    return { userId: id, token };
+    return { token };
   } else throw new AuthenticationError("Credenciais incorretas!");
 };
 

@@ -4,9 +4,9 @@ export const GET_USER = gql`
   query GET_USER {
     user {
       firstName
-      id
       lastName
       userName
+      email
     }
   }
 `;
@@ -14,7 +14,6 @@ export const GET_USER = gql`
 export const GET_USERS = gql`
   query GET_USERS {
     users {
-      id
       firstName
       lastName
       userName
@@ -25,9 +24,6 @@ export const GET_USERS = gql`
 export const CREATE_USER = gql`
   mutation CREATE_USER($data: CreateUserInput!) {
     createUser(data: $data) {
-      firstName
-      id
-      lastName
       userName
     }
   }
@@ -36,8 +32,18 @@ export const CREATE_USER = gql`
 export const LOGIN_USER = gql`
   mutation LOGIN_USER($data: LoginInput!) {
     login(data: $data) {
-      userId
       token
+    }
+  }
+`;
+
+export const UPDATE_USER = gql`
+  mutation UPDATE_USER($data: UpdateUserInput!) {
+    updateUser(data: $data) {
+      firstName
+      lastName
+      userName
+      email
     }
   }
 `;

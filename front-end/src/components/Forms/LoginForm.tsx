@@ -23,7 +23,7 @@ const LoginForm = () => {
     const formatedData = formDataToObject(formData);
     const response = await LoginUser(formatedData);
 
-    if (!response.userId) return setErro(response);
+    if (!response.token) return setErro(response);
 
     localStorage.setItem("token", response.token);
     route.push("/perfil");
@@ -32,8 +32,8 @@ const LoginForm = () => {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <Label htmlFor="userName" text="Nome de usuário" />
-        <Input id="userName" name="userName" />
+        <Label htmlFor="email" text="Email" />
+        <Input id="email" name="email" />
 
         <Label htmlFor="password" text="Senha" />
         <Input id="password" name="password" />

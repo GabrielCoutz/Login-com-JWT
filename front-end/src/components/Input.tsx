@@ -6,6 +6,7 @@ interface InputModel {
   name: string;
   id: string;
   className?: string;
+  value?: string;
 }
 
 const Input = ({
@@ -14,6 +15,7 @@ const Input = ({
   name,
   id,
   className,
+  value,
 }: InputModel) => {
   return (
     <>
@@ -23,6 +25,7 @@ const Input = ({
         name={name}
         id={id}
         className={className}
+        defaultValue={value}
       />
     </>
   );

@@ -6,12 +6,11 @@ export const loginTypeDef = gql`
   }
 
   type Login {
-    userId: ID!
     token: String!
   }
 
   input LoginInput {
-    userName: String!
+    email: String!
     password: String!
   }
 `;
