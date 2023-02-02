@@ -25,16 +25,16 @@ const CreateUserForm = () => {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <Label htmlFor="firstName" text="Nome" />
+        <Label htmlFor="firstName">Nome</Label>
         <Input id="firstName" name="firstName" />
 
-        <Label htmlFor="lastName" text="Sobrenome" />
+        <Label htmlFor="lastName">Sobrenome</Label>
         <Input id="lastName" name="lastName" />
 
-        <Label htmlFor="email" text="Email" />
+        <Label htmlFor="email">Email</Label>
         <Input id="email" name="email" />
 
-        <Label htmlFor="password" text="Senha" />
+        <Label htmlFor="password">Senha</Label>
         <Input id="password" name="password" />
 
         <button>Enviar</button>

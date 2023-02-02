@@ -65,20 +65,7 @@ const authorizeUser = (req) => {
   }
 };
 
-export const checkUserIsLogged = (userId) => {
-  if (!userId)
-    throw new AuthenticationError(
-      "Você precisa estar logado para realizar esta ação!!"
-    );
-};
-
-export const checkUserIsOwner = async (userId, refId) => {
-  const { id } = await (await fetchUser(userId)).json();
-  if (id !== refId)
-    throw new AuthenticationError(
-      "Você não pode alterar dados de outro usuário!"
-    );
-};
+export const userIsLogged = (userId) => !!userId;
 
 export default ({ req }) => {
   const loggedUserId = authorizeUser(req);

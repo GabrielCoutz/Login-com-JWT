@@ -5,7 +5,6 @@ import Input from "../src/components/Input";
 import Label from "../src/components/Label";
 import GetUser from "../src/services/GetUser";
 import updateUser from "../src/services/updateUser";
-import formDataToObject from "../src/Utils/formDataToObject";
 import getValues from "../src/Utils/getValues";
 
 interface DataModel {
@@ -43,19 +42,19 @@ const perfil = () => {
     return (
       <Form onSubmit={handleSubmit}>
         <div>
-          <Label text="Nome de usuário" htmlFor="userName" />
+          <Label htmlFor="userName">Nome de usuário</Label>
           <Input id="userName" name="userName" value={data?.userName} />
         </div>
         <div>
-          <Label text="Nome" htmlFor="firstName" />
+          <Label htmlFor="firstName">Nome</Label>
           <Input id="firstName" name="firstName" value={data?.firstName} />
         </div>
         <div>
-          <Label text="Sobrenome" htmlFor="lastName" />
+          <Label htmlFor="lastName">Sobrenome</Label>
           <Input id="lastName" name="lastName" value={data?.lastName} />
         </div>
         <div>
-          <Label text="Email" htmlFor="email" />
+          <Label htmlFor="email">Email</Label>
           <Input id="email" name="email" value={data?.email} />
         </div>
         <button>Atualizar dados</button>

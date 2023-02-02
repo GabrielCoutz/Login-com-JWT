@@ -25,14 +25,6 @@
       "id": 3
     },
     {
-      "firstName": "nome",
-      "lastName": "sobrenome",
-      "email": "dofgg",
-      "userName": "nome.sobrenome",
-      "passwordHash": "$2b$12$Rp87mtUxNIDDdOjnOW6RbOfKky2RGnHySedrOIe4cQ0ErbegzbJm2",
-      "id": 4
-    },
-    {
       "firstName": "Gabriel",
       "lastName": "Cassiano",
       "email": "teste@gmail.com",

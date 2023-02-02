@@ -3,13 +3,13 @@ import React from "react";
 export interface LabelModel {
   htmlFor: string;
   className?: string;
-  text: string;
+  children?: string;
 }
 
-const Label = ({ htmlFor, className, text }: LabelModel) => {
+const Label = ({ htmlFor, className, children }: LabelModel) => {
   return (
     <label htmlFor={htmlFor} className={className}>
-      {text}
+      {children || htmlFor}
     </label>
   );
 };

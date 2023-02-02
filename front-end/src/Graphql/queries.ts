@@ -3,20 +3,15 @@ import { gql } from "graphql-request";
 export const GET_USER = gql`
   query GET_USER {
     user {
-      firstName
-      lastName
-      userName
-      email
-    }
-  }
-`;
-
-export const GET_USERS = gql`
-  query GET_USERS {
-    users {
-      firstName
-      lastName
-      userName
+      ... on User {
+        email
+        firstName
+        lastName
+        userName
+      }
+      ... on UserNotLogged {
+        message
+      }
     }
   }
 `;
@@ -35,6 +30,36 @@ export const CREATE_USER = gql`
   }
 `;
 
+export const UPDATE_USER = gql`
+  mutation UPDATE_USER($data: UpdateUserInput!) {
+    updateUser(data: $data) {
+      ... on User {
+        email
+        firstName
+        lastName
+        userName
+      }
+
+      ... on UserNotLogged {
+        message
+      }
+    }
+  }
+`;
+
+export const DELETE_USER = gql`
+  mutation DELETE_USER {
+    deleteUser {
+      ... on DeleteResponse {
+        deleted
+      }
+      ... on UserNotExist {
+        message
+      }
+    }
+  }
+`;
+
 export const LOGIN_USER = gql`
   mutation LOGIN_USER($data: LoginInput!) {
     login(data: $data) {
@@ -44,17 +69,6 @@ export const LOGIN_USER = gql`
       ... on LoginError {
         message
       }
-    }
-  }
-`;
-
-export const UPDATE_USER = gql`
-  mutation UPDATE_USER($data: UpdateUserInput!) {
-    updateUser(data: $data) {
-      firstName
-      lastName
-      userName
-      email
     }
   }
 `;

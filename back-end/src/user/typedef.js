@@ -2,17 +2,32 @@ import { gql } from "apollo-server";
 
 export const userTypeDef = gql`
   extend type Query {
-    user: User!
+    user: GetUserResult!
     users: [User!]!
   }
 
   extend type Mutation {
     createUser(data: CreateUserInput!): CreateUserResult!
-    updateUser(data: UpdateUserInput!): User!
-    deleteUser: Boolean!
+    updateUser(data: UpdateUserInput!): UpdateUserResult!
+    deleteUser: DeleteUserResult!
   }
 
+  union DeleteUserResult = UserNotExist | DeleteResponse
+  union UpdateUserResult = UserNotLogged | User
   union CreateUserResult = EmailAlreadyInUse | User
+  union GetUserResult = UserNotLogged | User
+
+  type DeleteResponse {
+    deleted: Boolean!
+  }
+
+  type UserNotExist {
+    message: String!
+  }
+
+  type UserNotLogged {
+    message: String!
+  }
 
   type EmailAlreadyInUse {
     message: String!
