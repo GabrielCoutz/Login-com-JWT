@@ -28,10 +28,10 @@ const LoginForm = () => {
     <>
       <Form onSubmit={handleSubmit}>
         <Label htmlFor="email">Email</Label>
-        <Input id="email" name="email" />
+        <Input id="email" name="email" required />
 
         <Label htmlFor="password">Senha</Label>
-        <Input id="password" name="password" />
+        <Input id="password" name="password" required />
 
         <button>Entrar</button>
       </Form>

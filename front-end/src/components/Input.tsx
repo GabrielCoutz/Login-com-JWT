@@ -7,6 +7,7 @@ interface InputModel {
   id: string;
   className?: string;
   value?: string;
+  required?: boolean;
 }
 
 const Input = ({
@@ -16,6 +17,7 @@ const Input = ({
   id,
   className,
   value,
+  required,
 }: InputModel) => {
   return (
     <>
@@ -26,6 +28,7 @@ const Input = ({
         id={id}
         className={className}
         defaultValue={value}
+        required={required}
       />
     </>
   );

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import Form from "../src/components/Form";
@@ -12,6 +13,10 @@ interface DataModel {
   firstName: string;
   userName: string;
   email: string;
+}
+
+function logout() {
+  localStorage.removeItem("token");
 }
 
 const perfil = () => {
@@ -40,25 +45,30 @@ const perfil = () => {
 
   if (data)
     return (
-      <Form onSubmit={handleSubmit}>
-        <div>
-          <Label htmlFor="userName">Nome de usuário</Label>
-          <Input id="userName" name="userName" value={data?.userName} />
-        </div>
-        <div>
-          <Label htmlFor="firstName">Nome</Label>
-          <Input id="firstName" name="firstName" value={data?.firstName} />
-        </div>
-        <div>
-          <Label htmlFor="lastName">Sobrenome</Label>
-          <Input id="lastName" name="lastName" value={data?.lastName} />
-        </div>
-        <div>
-          <Label htmlFor="email">Email</Label>
-          <Input id="email" name="email" value={data?.email} />
-        </div>
-        <button>Atualizar dados</button>
-      </Form>
+      <>
+        <Form onSubmit={handleSubmit}>
+          <div>
+            <Label htmlFor="userName">Nome de usuário</Label>
+            <Input id="userName" name="userName" value={data?.userName} />
+          </div>
+          <div>
+            <Label htmlFor="firstName">Nome</Label>
+            <Input id="firstName" name="firstName" value={data?.firstName} />
+          </div>
+          <div>
+            <Label htmlFor="lastName">Sobrenome</Label>
+            <Input id="lastName" name="lastName" value={data?.lastName} />
+          </div>
+          <div>
+            <Label htmlFor="email">Email</Label>
+            <Input id="email" name="email" value={data?.email} />
+          </div>
+          <button>Atualizar dados</button>
+        </Form>
+        <Link href="/" onClick={logout}>
+          Sair
+        </Link>
+      </>
     );
   return null;
 };

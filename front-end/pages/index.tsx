@@ -1,10 +1,11 @@
-import CreateUserForm from "../src/components/Forms/CreateUserForm";
-import styles from "../styles/Home.module.css";
+import Link from "next/link";
+import styles from "../styles/scss/Home.module.scss";
 
 export default function Home() {
   return (
     <div className={styles.container}>
-      <CreateUserForm />
+      <Link href="/criar-conta">Criar conta</Link>
+      <Link href="/login">Login</Link>
     </div>
   );
 }
