@@ -31,6 +31,22 @@
       "userName": "nome.sobrenome",
       "passwordHash": "$2b$12$Rp87mtUxNIDDdOjnOW6RbOfKky2RGnHySedrOIe4cQ0ErbegzbJm2",
       "id": 4
+    },
+    {
+      "firstName": "Gabriel",
+      "lastName": "Cassiano",
+      "email": "teste@gmail.com",
+      "userName": "Gabriel.Cassiano",
+      "passwordHash": "$2b$12$k4yrnyPvGMnxvGXXQQwEQ.Sv/W8sgdm3vH9DTusvGqThQO2t5baq.",
+      "id": 5
+    },
+    {
+      "firstName": "Gabriel",
+      "lastName": "Cassiano",
+      "email": "testde@gmail.com",
+      "userName": "Gabriel.Cassiano",
+      "passwordHash": "$2b$12$7ngoApK4UGnBRvFSg8hlBuBJnvrgTiQs/SKgIKqlsdBbbDGfgpc4e",
+      "id": 6
     }
   ]
 }

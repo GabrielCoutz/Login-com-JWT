@@ -24,7 +24,13 @@ export const GET_USERS = gql`
 export const CREATE_USER = gql`
   mutation CREATE_USER($data: CreateUserInput!) {
     createUser(data: $data) {
-      userName
+      ... on User {
+        userName
+      }
+
+      ... on EmailAlreadyInUse {
+        message
+      }
     }
   }
 `;
@@ -32,7 +38,12 @@ export const CREATE_USER = gql`
 export const LOGIN_USER = gql`
   mutation LOGIN_USER($data: LoginInput!) {
     login(data: $data) {
-      token
+      ... on Login {
+        token
+      }
+      ... on LoginError {
+        message
+      }
     }
   }
 `;

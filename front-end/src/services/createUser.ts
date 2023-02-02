@@ -1,3 +1,8 @@
+interface createUserResponse {
+  userName: string;
+  message: string;
+}
+
 export default async function (data: DataModel) {
   const response = await fetch("/api/user", {
     method: "POST",
@@ -6,6 +11,6 @@ export default async function (data: DataModel) {
     },
     body: JSON.stringify(data),
   });
-
-  return await response.json();
+  const a: createUserResponse = await response.json();
+  return a;
 }

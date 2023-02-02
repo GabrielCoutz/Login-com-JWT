@@ -6,6 +6,7 @@ import Label from "../src/components/Label";
 import GetUser from "../src/services/GetUser";
 import updateUser from "../src/services/updateUser";
 import formDataToObject from "../src/Utils/formDataToObject";
+import getValues from "../src/Utils/getValues";
 
 interface DataModel {
   lastName: string;
@@ -20,7 +21,6 @@ const perfil = () => {
 
   React.useEffect(() => {
     const userIsLogged = !!localStorage.getItem("token");
-
     if (!userIsLogged) push("/");
 
     async function loadData() {
@@ -34,12 +34,7 @@ const perfil = () => {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const inputs = [...e.currentTarget.getElementsByTagName("input")];
-    const formData = new FormData();
-
-    inputs.forEach(({ name, value }) => formData.append(name, value));
-
-    const formatedData = formDataToObject(formData);
+    const formatedData = getValues(e.currentTarget);
     const response = await updateUser(formatedData);
     console.log(response);
   }

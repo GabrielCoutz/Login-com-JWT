@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
 import LoginUser from "../../services/LoginUser";
-import formDataToObject from "../../Utils/formDataToObject";
+import getValues from "../../Utils/getValues";
 import Error from "../Error";
 import Form from "../Form";
 import Input from "../Input";
@@ -9,21 +9,16 @@ import Label from "../Label";
 
 const LoginForm = () => {
   const route = useRouter();
-  const [erro, setErro] = React.useState([]);
+  const [erro, setErro] = React.useState(null);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setErro([]);
+    setErro(null);
 
-    const inputs = [...e.currentTarget.getElementsByTagName("input")];
-    const formData = new FormData();
+    const inputData = getValues(e.currentTarget);
+    const response = await LoginUser(inputData);
 
-    inputs.forEach(({ name, value }) => formData.append(name, value));
-
-    const formatedData = formDataToObject(formData);
-    const response = await LoginUser(formatedData);
-
-    if (!response.token) return setErro(response);
+    if (response.message) return setErro(response);
 
     localStorage.setItem("token", response.token);
     route.push("/perfil");
