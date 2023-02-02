@@ -27,11 +27,10 @@ const updateUser = async (_, { data }, { updateUser, loggedUserId }) => {
   return json;
 };
 
-const deleteUser = async (_, { id }, { deleteUser, loggedUserId }) => {
+const deleteUser = async (_, __, { deleteUser, loggedUserId }) => {
   checkUserIsLogged(loggedUserId);
-  await checkUserIsOwner(id, loggedUserId);
 
-  const response = await deleteUser(id);
+  const response = await deleteUser(loggedUserId);
   const json = await response.json();
   return !!json;
 };

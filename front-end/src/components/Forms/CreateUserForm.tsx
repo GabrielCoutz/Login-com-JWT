@@ -5,7 +5,7 @@ import Form from "../Form";
 import Input from "../Input";
 import Label from "../Label";
 
-function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
   e.preventDefault();
   const inputs = [...e.currentTarget.getElementsByTagName("input")];
   const formData = new FormData();
@@ -14,7 +14,8 @@ function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 
   const formatedData = formDataToObject(formData);
 
-  createUser(formatedData);
+  const response = await createUser(formatedData);
+  console.log(response);
 }
 
 const CreateUserForm = () => {
@@ -25,6 +26,9 @@ const CreateUserForm = () => {
 
       <Label htmlFor="lastName" text="Sobrenome" />
       <Input id="lastName" name="lastName" />
+
+      <Label htmlFor="email" text="Email" />
+      <Input id="email" name="email" />
 
       <Label htmlFor="password" text="Senha" />
       <Input id="password" name="password" />

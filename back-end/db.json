@@ -1,26 +1,12 @@
 {
   "users": [
     {
-      "firstName": "nome 1",
-      "lastName": "sobrenome 1",
-      "userName": "nome de usuario 1",
-      "passwordHash": "$2b$12$9RqEw.J/mQZkRItbxXhr0OzwOv3KbBzmy2Jcfo0m1anvFpMnD5QNK",
+      "firstName": "Gabriel",
+      "lastName": "Cassiano",
+      "email": "dog",
+      "userName": "Gabriel.Cassiano",
+      "passwordHash": "$2b$12$EcYIRpOFfXuje8qx8G10cewwBjE.DOgIZk4PW3sCeKi8wLeGwEx2W",
       "id": 1
-    },
-    {
-      "firstName": "nome",
-      "lastName": "sobrenome",
-      "userName": "nome.sobrenome",
-      "passwordHash": "$2b$12$NN/4TZJLaRSL6vLzTk8kmuFGD80ipipilSabA1p.ehPAsWYM6kjL2",
-      "id": 2
-    },
-    {
-      "firstName": "nomed",
-      "lastName": "sobrenomef",
-      "email": "teste@gmail.com",
-      "userName": "nomef",
-      "passwordHash": "$2b$12$b9nAIJs2nqrQqkktOwLYYuiqHmSyoBNLm6TZrfiW2YrUblwLVImz.",
-      "id": 3
     }
   ]
 }

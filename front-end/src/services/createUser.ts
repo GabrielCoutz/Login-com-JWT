@@ -1,5 +1,5 @@
 export default async function (data: DataModel) {
-  const response = await fetch("/api/user/create", {
+  const response = await fetch("/api/user", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

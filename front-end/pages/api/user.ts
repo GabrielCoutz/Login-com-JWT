@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { UPDATE_USER, GET_USER } from "../../src/Graphql/queries";
+import { UPDATE_USER, GET_USER, CREATE_USER } from "../../src/Graphql/queries";
 import request from "../../src/Utils/request";
 
 type Data = {
@@ -11,6 +11,7 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   let response;
+  let json;
   const token = req.headers.authorization;
 
   switch (req.method) {
@@ -26,10 +27,22 @@ export default async function handler(
       if (response.status !== 200)
         res.status(response.status).json(await response.json());
 
-      const json = await response.json();
+      json = await response.json();
       if (json.errors) res.status(200).json(json.errors);
 
       res.status(200).json(json.data.updateUser);
+      break;
+
+    case "POST":
+      response = await request(CREATE_USER, { data: req.body });
+
+      if (response.status !== 200)
+        res.status(response.status).json(await response.json());
+
+      json = await response.json();
+      if (json.errors) res.status(200).json(json.errors);
+
+      res.status(200).json(json.data.createUser);
       break;
 
     default:
