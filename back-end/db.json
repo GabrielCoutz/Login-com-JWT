@@ -7,6 +7,14 @@
       "userName": "gabriel.coutinho",
       "passwordHash": "$2b$12$CaIYgWmFhnc6sfYj5dnhnuLsTWwMm.J8O2kJl9kbYLAf.CVp2ttq6",
       "id": 1
+    },
+    {
+      "firstName": "teste",
+      "lastName": "teste",
+      "email": "teste@gmail.com",
+      "userName": "teste.teste",
+      "passwordHash": "$2b$12$rO/9IQk0HXtWYh73lMsHCO/Hg/MtaiP.ajyt9jsloDuARKvuhkhui",
+      "id": 2
     }
   ]
 }

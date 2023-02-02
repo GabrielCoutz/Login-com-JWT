@@ -27,6 +27,12 @@ body {
   padding: 0.5rem 1.5rem;
   font-size: 1rem;
   border-radius: $border-radius;
+  transition: 0.3s all;
+
+  &:focus,
+  &:active {
+    transform: scale(0.98);
+  }
 
   &:hover {
     cursor: pointer;
@@ -39,14 +45,22 @@ body {
   &.primary {
     background: $primary-color;
     color: $white;
+
+    &:hover {
+      background-color: black !important;
+    }
   }
   &.secondary {
     color: $primary-color;
     border: 1px solid $primary-color;
+
+    &:hover {
+      background-color: white !important;
+    }
   }
 }
 
-.alert{
+.alert {
   font-size: 1.125rem;
   border-left: 11px solid transparent;
   padding: 0.5rem;
@@ -54,7 +68,7 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  
+
   margin-bottom: 16px;
   border-radius: $border-radius;
 

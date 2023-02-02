@@ -7,10 +7,22 @@ import Form from "../Form";
 import Input from "../Input";
 import Label from "../Label";
 import FormGroup from "./FormGroup";
+import Message from "../UiElements/Message";
 
 const LoginForm = () => {
   const route = useRouter();
   const [erro, setErro] = React.useState(null);
+  const [message, setMessage] = React.useState("");
+
+  React.useEffect(() => {
+    const createdAccountSuccess = !!localStorage.getItem(
+      "createdAccountSuccess"
+    );
+    if (createdAccountSuccess) {
+      setMessage("Conta criada com sucesso!");
+      localStorage.removeItem("createdAccountSuccess");
+    }
+  });
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -27,6 +39,7 @@ const LoginForm = () => {
 
   return (
     <>
+      <Message message={message} />
       <Form onSubmit={handleSubmit}>
         <FormGroup row>
           <Label htmlFor="email">Email</Label>

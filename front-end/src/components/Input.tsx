@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../../styles/scss/Input.module.scss";
 import { InputModel } from "../Interfaces/globa";
+import TogglePasswordButton from "./UiElements/TogglePasswordButton";
 
 const Input = ({
   type = "text",
@@ -24,6 +25,7 @@ const Input = ({
         required={required}
         autoComplete={autoComplete}
       />
+      {type === "password" && <TogglePasswordButton passwordInput={id} />}
     </>
   );
 };

@@ -20,7 +20,10 @@ const CreateUserForm = () => {
     const response = await createUser(inputData);
 
     if (response.message) setErro(response);
-    else push("/login");
+    else {
+      localStorage.setItem("createdAccountSuccess", "1");
+      push("/login");
+    }
   }
 
   return (

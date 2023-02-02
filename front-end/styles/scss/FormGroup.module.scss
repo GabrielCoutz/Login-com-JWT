@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 8px;
   margin-bottom: 16px;
+  position: relative;
 
   &.row {
     grid-column: 1/-1;
