@@ -24,7 +24,7 @@ Atualização diárias sobre o andamento:
 
 ## ```/back-end```
 
-Nesta pasta encontra-rá a estrutura que montei utilizando ```Apollo Server```, ```GraphQL``` e ```JWT```. Com validações em operações de ```UPDATE``` e ```DELETE```, por meio do token gerado no login.
+Nesta pasta encontrará a estrutura que montei utilizando ```Apollo Server```, ```GraphQL``` e ```JWT```. Com validações em operações de ```UPDATE``` e ```DELETE```, por meio do token gerado no login.
 
 ## ```/front-end```
 
