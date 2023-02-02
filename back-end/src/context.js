@@ -38,14 +38,17 @@ const createUser = async (data) => {
   });
 };
 
-const updateUser = (id, data) =>
-  request(`/users/${id}`, {
+const updateUser = async (id, data) => {
+  data.passwordHash = await encryptPassword(data.password);
+  delete data.password;
+  return request(`/users/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
   });
+};
 
 const deleteUser = async (id) =>
   request(`/users/${id}`, {
