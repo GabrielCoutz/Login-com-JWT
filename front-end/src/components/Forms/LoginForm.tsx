@@ -50,10 +50,10 @@ const LoginForm = () => {
           />
         </FormGroup>
         <FormGroup row>
+          <Error erro={erro} />
           <button className="btn primary">Entrar</button>
         </FormGroup>
       </Form>
-      <Error erro={erro} />
     </>
   );
 };

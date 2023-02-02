@@ -45,3 +45,23 @@ body {
     border: 1px solid $primary-color;
   }
 }
+
+.alert{
+  font-size: 1.125rem;
+  border-left: 11px solid transparent;
+  padding: 0.5rem;
+  color: $black;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  margin-bottom: 16px;
+  border-radius: $border-radius;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    position: relative;
+    top: 2px;
+  }
+}

@@ -1,0 +1,10 @@
+@import "variables";
+
+.message {
+  border-color: $green;
+  background-color: #f5fff4;
+
+  &::before {
+    content: url("../../public/success.svg");
+  }
+}

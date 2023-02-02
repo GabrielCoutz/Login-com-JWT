@@ -1,3 +1,12 @@
 {
-  "users": []
+  "users": [
+    {
+      "firstName": "Gabriel",
+      "lastName": "Coutinho",
+      "email": "gabriel@gmail.com",
+      "userName": "gabriel.coutinho",
+      "passwordHash": "$2b$12$6NBpBkS1TpN//PCH559mtO4FTOQ7aGyqfkCbNEkp1tCo7cwZ9jaXS",
+      "id": 1
+    }
+  ]
 }

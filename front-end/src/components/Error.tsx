@@ -13,7 +13,7 @@ const ErroIsFilled = (erro: any): erro is ErroModel => {
 const Error = ({ erro }: any) => {
   if (!ErroIsFilled(erro)) return null;
 
-  return <div className={styles.error}>{erro.message}</div>;
+  return <div className={`${styles.error} alert`}>{erro.message}</div>;
 };
 
 export default Error;
