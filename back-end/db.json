@@ -7,6 +7,30 @@
       "userName": "Gabriel.Cassiano",
       "passwordHash": "$2b$12$EcYIRpOFfXuje8qx8G10cewwBjE.DOgIZk4PW3sCeKi8wLeGwEx2W",
       "id": 1
+    },
+    {
+      "firstName": "nome",
+      "lastName": "sobrenome",
+      "email": "dofg",
+      "userName": "nome.sobrenome",
+      "passwordHash": "$2b$12$VrvW27Wmvl0/BxVgJx6ryO68XVbWji6ogDJVpOWgJYh5VEMSNRBhW",
+      "id": 2
+    },
+    {
+      "firstName": "nome",
+      "lastName": "sobrenome",
+      "email": "doffg",
+      "userName": "nome.sobrenome",
+      "passwordHash": "$2b$12$.GLVg6VDJuT2.5/2cRb/lOBOc0uW.T7pS62ALsYQV6Nofrgd61XAy",
+      "id": 3
+    },
+    {
+      "firstName": "nome",
+      "lastName": "sobrenome",
+      "email": "dofgg",
+      "userName": "nome.sobrenome",
+      "passwordHash": "$2b$12$Rp87mtUxNIDDdOjnOW6RbOfKky2RGnHySedrOIe4cQ0ErbegzbJm2",
+      "id": 4
     }
   ]
 }

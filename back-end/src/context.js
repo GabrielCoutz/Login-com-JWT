@@ -8,7 +8,20 @@ const request = (endpoint, options) =>
 const fetchUsers = () => request("/users/");
 const fetchUser = (id) => request(`/users/${id}`);
 
+const checkEmail = async (email) => {
+  const response = await fetchUser(`?email=${email}`);
+  const json = await response.json();
+  if (json.length) return true;
+  return false;
+};
+
 const createUser = async (data) => {
+  const emailAlreadyInUse = await checkEmail(data.email);
+  if (emailAlreadyInUse)
+    return {
+      message: "Email já em uso!",
+    };
+
   const userName = `${data.firstName.split(" ")[0]}.${
     data.lastName.split(" ")[0]
   }`;

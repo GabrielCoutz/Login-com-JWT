@@ -15,6 +15,7 @@ const user = async (_, __, { fetchUser, loggedUserId }) => {
 
 const createUser = async (_, { data }, { createUser }) => {
   const response = await createUser(data);
+  if (response.message) return response;
   const json = await response.json();
   return json;
 };
@@ -44,5 +45,12 @@ export const userResolvers = {
     createUser,
     updateUser,
     deleteUser,
+  },
+  CreateUserResult: {
+    __resolveType: (obj) => {
+      if (obj.message) return "EmailAlreadyInUse";
+      if (obj.userName) return "User";
+      return null;
+    },
   },
 };

@@ -7,9 +7,15 @@ export const userTypeDef = gql`
   }
 
   extend type Mutation {
-    createUser(data: CreateUserInput!): User!
+    createUser(data: CreateUserInput!): CreateUserResult!
     updateUser(data: UpdateUserInput!): User!
     deleteUser: Boolean!
+  }
+
+  union CreateUserResult = EmailAlreadyInUse | User
+
+  type EmailAlreadyInUse {
+    message: String!
   }
 
   input CreateUserInput {

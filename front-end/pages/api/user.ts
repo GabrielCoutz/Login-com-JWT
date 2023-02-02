@@ -45,6 +45,9 @@ export default async function handler(
       res.status(200).json(json.data.createUser);
       break;
 
+    case "DELETE":
+      break;
+
     default:
       break;
   }
