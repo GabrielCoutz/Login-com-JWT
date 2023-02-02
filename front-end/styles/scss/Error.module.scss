@@ -1,0 +1,21 @@
+@import "variables";
+
+.error {
+  font-size: 1.125rem;
+  border-left: 11px solid #ff0000;
+  padding: 0.5rem;
+  color: $black;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #fff4f4;
+  margin-bottom: 16px;
+  border-radius: $border-radius;
+
+  &::before {
+    content: url("../../public/alert.svg");
+    display: inline-block;
+    position: relative;
+    top: 2px;
+  }
+}

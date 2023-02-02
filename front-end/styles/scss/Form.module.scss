@@ -1,0 +1,12 @@
+@import "variables";
+
+.form {
+  max-width: 500px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-radius: $border-radius;
+  gap: 1rem;
+  margin: 0 auto;
+  background: white;
+  padding: 2rem;
+}

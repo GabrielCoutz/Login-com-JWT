@@ -1,0 +1,13 @@
+@import "variables.scss";
+
+.header {
+  background-color: $white;
+  border-radius: $border-radius;
+  padding: 1rem 2rem;
+  max-width: 300px;
+  text-align: center;
+  margin: 0 auto 4rem auto !important;
+  a {
+    font-size: 1.125rem;
+  }
+}

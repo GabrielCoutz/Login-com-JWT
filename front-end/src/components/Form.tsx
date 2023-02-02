@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import styles from "../../styles/scss/Form.module.scss";
 
 interface FormModel {
   children: ReactNode;
@@ -6,7 +7,11 @@ interface FormModel {
 }
 
 const Form = ({ children, onSubmit }: FormModel) => {
-  return <form onSubmit={onSubmit}>{children}</form>;
+  return (
+    <form onSubmit={onSubmit} className={styles.form}>
+      {children}
+    </form>
+  );
 };
 
 export default Form;

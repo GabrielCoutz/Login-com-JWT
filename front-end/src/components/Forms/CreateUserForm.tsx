@@ -6,6 +6,7 @@ import Error from "../Error";
 import Form from "../Form";
 import Input from "../Input";
 import Label from "../Label";
+import FormGroup from "./FormGroup";
 
 const CreateUserForm = () => {
   const [erro, setErro] = React.useState({});
@@ -25,21 +26,44 @@ const CreateUserForm = () => {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <Label htmlFor="firstName">Nome</Label>
-        <Input id="firstName" name="firstName" required />
+        <FormGroup>
+          <Label htmlFor="firstName">Nome</Label>
+          <Input id="firstName" name="firstName" required />
+        </FormGroup>
 
-        <Label htmlFor="lastName">Sobrenome</Label>
-        <Input id="lastName" name="lastName" required />
+        <FormGroup>
+          <Label htmlFor="lastName">Sobrenome</Label>
+          <Input id="lastName" name="lastName" required />
+        </FormGroup>
 
-        <Label htmlFor="email">Email</Label>
-        <Input id="email" name="email" required />
+        <FormGroup row>
+          <Label htmlFor="email">Email</Label>
+          <Input
+            id="email"
+            name="email"
+            required
+            type="email"
+            placeholder="exemplo@gmail.com"
+            autoComplete="username"
+          />
+        </FormGroup>
 
-        <Label htmlFor="password">Senha</Label>
-        <Input id="password" name="password" required />
+        <FormGroup row>
+          <Label htmlFor="password">Senha</Label>
+          <Input
+            id="password"
+            name="password"
+            required
+            type="password"
+            autoComplete="current-password"
+          />
+        </FormGroup>
 
-        <button>Enviar</button>
+        <FormGroup row>
+          <Error erro={erro} />
+          <button className="btn primary">Cadastrar</button>
+        </FormGroup>
       </Form>
-      <Error erro={erro} />
     </>
   );
 };

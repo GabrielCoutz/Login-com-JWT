@@ -6,6 +6,7 @@ import Error from "../Error";
 import Form from "../Form";
 import Input from "../Input";
 import Label from "../Label";
+import FormGroup from "./FormGroup";
 
 const LoginForm = () => {
   const route = useRouter();
@@ -27,13 +28,30 @@ const LoginForm = () => {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <Label htmlFor="email">Email</Label>
-        <Input id="email" name="email" required />
+        <FormGroup row>
+          <Label htmlFor="email">Email</Label>
+          <Input
+            id="email"
+            name="email"
+            required
+            type="email"
+            autoComplete="username"
+          />
+        </FormGroup>
 
-        <Label htmlFor="password">Senha</Label>
-        <Input id="password" name="password" required />
-
-        <button>Entrar</button>
+        <FormGroup row>
+          <Label htmlFor="password">Senha</Label>
+          <Input
+            id="password"
+            name="password"
+            required
+            type="password"
+            autoComplete="current-password"
+          />
+        </FormGroup>
+        <FormGroup row>
+          <button className="btn primary">Entrar</button>
+        </FormGroup>
       </Form>
       <Error erro={erro} />
     </>

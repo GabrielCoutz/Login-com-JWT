@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "../../styles/scss/Error.module.scss";
 
 interface ErroModel {
   message: string;
@@ -12,11 +13,7 @@ const ErroIsFilled = (erro: any): erro is ErroModel => {
 const Error = ({ erro }: any) => {
   if (!ErroIsFilled(erro)) return null;
 
-  return (
-    <ul>
-      <li>{erro.message}</li>
-    </ul>
-  );
+  return <div className={styles.error}>{erro.message}</div>;
 };
 
 export default Error;

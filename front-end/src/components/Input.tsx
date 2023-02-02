@@ -1,13 +1,15 @@
 import React from "react";
+import styles from "../../styles/scss/Input.module.scss";
 
 interface InputModel {
-  type?: string;
+  type?: React.HTMLInputTypeAttribute;
   placeholder?: string;
   name: string;
   id: string;
   className?: string;
   value?: string;
   required?: boolean;
+  autoComplete?: string;
 }
 
 const Input = ({
@@ -18,6 +20,7 @@ const Input = ({
   className,
   value,
   required,
+  autoComplete,
 }: InputModel) => {
   return (
     <>
@@ -26,9 +29,10 @@ const Input = ({
         placeholder={placeholder}
         name={name}
         id={id}
-        className={className}
+        className={`${className} ${styles.input}`}
         defaultValue={value}
         required={required}
+        autoComplete={autoComplete}
       />
     </>
   );
