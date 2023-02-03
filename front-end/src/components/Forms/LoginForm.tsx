@@ -8,26 +8,23 @@ import Input from "../Input";
 import Label from "../Label";
 import FormGroup from "./FormGroup";
 import Message from "../UiElements/Message";
-import { UserContext } from "../UserContext";
 import useFetch from "../../Hooks/useFetch";
+import Button from "../UiElements/Button";
 
 const LoginForm = () => {
   const route = useRouter();
-  const { setUserIsLogged } = React.useContext(UserContext);
   const { request, erro, message, loading, token } = useFetch();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const inputData = getValues(e.currentTarget);
+    await request(LoginUser, inputData);
 
-    request(LoginUser, inputData);
+    if (!token) return;
 
-    console.log(token);
-
-    if (!erro) localStorage.setItem("token", token);
-    // setUserIsLogged(true);
-    // route.push("/perfil");
+    localStorage.setItem("token", token);
+    route.push("/perfil");
   }
 
   return (
@@ -57,9 +54,12 @@ const LoginForm = () => {
             defaultValue="gabriel"
           />
         </FormGroup>
+
         <FormGroup row>
           {erro && <Error erro={erro} />}
-          <button className="btn primary">Entrar</button>
+          <Button primary disabled={loading}>
+            Entrar
+          </Button>
         </FormGroup>
       </Form>
     </>

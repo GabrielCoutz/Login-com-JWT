@@ -17,8 +17,10 @@ export default async function handler(
   switch (req.method) {
     case "GET":
       response = await request(GET_USER, undefined, token);
-      const data = await response.json();
-      res.status(200).json(data);
+      const { data } = await response.json();
+      console.log(data);
+
+      res.status(200).json(data.user);
       break;
 
     case "PATCH":

@@ -11,31 +11,39 @@ import updateUser from "../src/services/updateUser";
 import getValues from "../src/Utils/getValues";
 import { UserContext } from "../src/components/UserContext";
 import useFetch from "../src/Hooks/useFetch";
+import Button from "../src/components/UiElements/Button";
+import GetUser from "../src/services/GetUser";
 
 const perfil = () => {
   const { push } = useRouter();
-  const { user, setUser, userIsLogged } = React.useContext(UserContext);
-
-  const [message, setMessage] = React.useState("");
-  const [erro, setErro] = React.useState(null);
+  const { request, erro, message, loading, setMessage } = useFetch();
+  const { user, setUser } = React.useContext(UserContext);
 
   React.useEffect(() => {
-    if (!userIsLogged) push("/login");
+    const tokenExist = !!localStorage.getItem("token");
+    if (!tokenExist) return;
+
+    async function loadData() {
+      const data = await request(GetUser);
+      console.log(erro);
+
+      if (!data) push("/login");
+      setUser(data);
+    }
+
+    loadData();
   }, []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setErro(null);
-    setMessage("");
 
     const formatedData = getValues(e.currentTarget);
-    const response = await updateUser(formatedData);
+    const newData = await request(updateUser, formatedData);
 
-    if (!response.userName) setErro(response);
-    else {
-      setUser(response);
-      setMessage("Dados atualizados!");
-    }
+    if (!newData?.userName) return;
+    setUser(newData);
+
+    setMessage("Dados atualizados!");
   }
 
   return (
@@ -43,25 +51,26 @@ const perfil = () => {
       <Form onSubmit={handleSubmit}>
         <FormGroup>
           <Label htmlFor="firstName">Nome</Label>
-          <Input id="firstName" name="firstName" value={user?.firstName} />
+          <Input id="firstName" name="firstName" value={user.firstName} />
         </FormGroup>
         <FormGroup>
           <Label htmlFor="lastName">Sobrenome</Label>
-          <Input id="lastName" name="lastName" value={user?.lastName} />
+          <Input id="lastName" name="lastName" value={user.lastName} />
         </FormGroup>
         <FormGroup row>
           <Label htmlFor="userName">Nome de usuário</Label>
-          <Input id="userName" name="userName" value={user?.userName} />
+          <Input id="userName" name="userName" value={user.userName} />
         </FormGroup>
         <FormGroup row>
           <Label htmlFor="email">Email</Label>
           <Input
             id="email"
             name="email"
-            value={user?.email}
+            value={user.email}
             autoComplete="username"
           />
         </FormGroup>
+
         <FormGroup row>
           <Label htmlFor="password">Senha</Label>
           <Input
@@ -71,10 +80,13 @@ const perfil = () => {
             autoComplete="current-password"
           />
         </FormGroup>
+
         <FormGroup row>
-          <Error erro={erro} />
-          <Message message={message} />
-          <button className="btn primary">Atualizar dados</button>
+          {erro && <Error erro={erro} />}
+          {message && <Message message={message} />}
+          <Button primary disabled={loading}>
+            Atualizar dados
+          </Button>
         </FormGroup>
       </Form>
       <LogoutButton />

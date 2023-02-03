@@ -1,9 +1,10 @@
 import React, { ReactNode } from "react";
+import useFetch from "../Hooks/useFetch";
 import GetUser from "../services/GetUser";
 
 interface UserContextModel {
-  userIsLogged: boolean;
-  user: UserModel | null;
+  userIsLogged: () => boolean;
+  user: UserModel;
   setUserIsLogged?: any;
   setUser?: any;
 }
@@ -15,39 +16,54 @@ interface UserModel {
   email: string;
 }
 
-const initialState = {
-  userIsLogged: false,
-  user: null,
+const contextInitialState = {
+  userIsLogged: () => false,
+  user: {
+    lastName: "",
+    firstName: "",
+    userName: "",
+    email: "",
+  },
 };
 
-export const UserContext = React.createContext<UserContextModel>(initialState);
+const userInitialState = {
+  lastName: "",
+  firstName: "",
+  userName: "",
+  email: "",
+};
+
+export const UserContext =
+  React.createContext<UserContextModel>(contextInitialState);
 
 const UserStorage = ({ children }: { children: ReactNode }) => {
-  const [userIsLogged, setUserIsLogged] = React.useState(false);
-  const [user, setUser] = React.useState(null);
+  const [user, setUser] = React.useState(userInitialState);
+  const { request, erro, data } = useFetch();
 
-  React.useEffect(() => {
+  function userIsLogged() {
+    return false;
     const tokenExist = !!localStorage.getItem("token");
-    if (!tokenExist) return;
+    let boleano = false;
 
-    async function loadUserData() {
-      const { data } = await GetUser();
-      if (data.user.message) {
-        setUserIsLogged(false);
-        setUser(null);
+    if (!tokenExist) return false;
+
+    async function teste() {
+      await request(GetUser);
+      if (erro) {
+        setUser(userInitialState);
+        boleano = false;
       } else {
-        setUserIsLogged(true);
-        setUser(data.user);
+        setUser(data);
+        boleano = true;
       }
     }
 
-    if (!userIsLogged) loadUserData();
-  }, [userIsLogged]);
+    teste();
+    return boleano;
+  }
 
   return (
-    <UserContext.Provider
-      value={{ userIsLogged, user, setUser, setUserIsLogged }}
-    >
+    <UserContext.Provider value={{ userIsLogged, user, setUser }}>
       {children}
     </UserContext.Provider>
   );

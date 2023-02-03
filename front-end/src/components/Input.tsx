@@ -22,7 +22,7 @@ const Input = ({
         name={name}
         id={id}
         className={`${className} ${styles.input}`}
-        defaultValue={defaultValue}
+        defaultValue={value || defaultValue}
         required={required}
         autoComplete={autoComplete}
       />

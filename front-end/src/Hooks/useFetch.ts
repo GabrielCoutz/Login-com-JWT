@@ -5,11 +5,19 @@ interface AlertModel {
   message: string;
 }
 
+interface TokenModel {
+  token: string;
+}
+
 interface UserModel {
   lastName: string;
   firstName: string;
   userName: string;
   email: string;
+}
+
+interface RequestModel {
+  response: UserModel | TokenModel;
 }
 
 const responseHasErro = (response: unknown): response is AlertModel =>
@@ -25,44 +33,39 @@ const responseHasData = (response: unknown): response is UserModel =>
       "password" in response)
   );
 
-const responseHasToken = (response: unknown): response is "string" =>
+const responseHasToken = (response: unknown): response is TokenModel =>
   !!(response && typeof response === "object" && "token" in response);
-
-const dataInitialState = {
-  lastName: "",
-  firstName: "",
-  userName: "",
-  email: "",
-};
 
 const useFetch = () => {
   const [message, setMessage] = React.useState("");
   const [erro, setErro] = React.useState("");
-  const [data, setData] = React.useState<UserModel>(dataInitialState);
+  const [data, setData] = React.useState<UserModel | null>(null);
   const [loading, setLoading] = React.useState(false);
   const [token, setToken] = React.useState("");
 
-  async function request(fetchFunction: Function, payload: DataModel = {}) {
+  const request = async (fetchFunction: Function, payload: DataModel = {}) => {
     setLoading(true);
-    setData(dataInitialState);
-    setErro("");
-    setToken("");
     setMessage("");
 
     const response = await fetchFunction(payload);
-    console.log(response);
 
     if (responseHasErro(response)) {
       setErro(response.message);
-    } else if (responseHasData(response)) {
-      setData(response);
-    } else if (responseHasToken(response)) {
-      setToken(response);
+      console.log(erro);
+      // setData(null);
     }
 
+    // else if (responseHasData(response)) {
+    //   setData(response);
+    //   setErro("");
+    //   setToken("");
+    //   setMessage("");
+    // } else if (responseHasToken(response)) {
+    //   setToken(response.token);
+    // }
+
     setLoading(false);
-  }
-  console.log(loading);
+  };
 
   return {
     message,
