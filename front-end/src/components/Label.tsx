@@ -1,5 +1,5 @@
 import React from "react";
-import { LabelModel } from "../Interfaces/globa";
+import { LabelModel } from "../Interfaces/global";
 
 const Label = ({ htmlFor, className, children }: LabelModel) => {
   return (

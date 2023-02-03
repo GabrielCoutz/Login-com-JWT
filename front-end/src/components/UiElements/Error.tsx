@@ -1,16 +1,8 @@
 import React from "react";
-import { ErroModel } from "../../Interfaces/globa";
 import styles from "../../../styles/scss/Error.module.scss";
 
-const ErroIsFilled = (erro: any): erro is ErroModel => {
-  if (erro?.message) return true;
-  return false;
-};
-
-const Error = ({ erro }: any) => {
-  if (!ErroIsFilled(erro)) return null;
-
-  return <div className={`${styles.error} alert`}>{erro.message}</div>;
+const Error = ({ erro }: { erro: string }) => {
+  return <div className={`${styles.error} alert`}>{erro}</div>;
 };
 
 export default Error;

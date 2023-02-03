@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../../styles/scss/Input.module.scss";
-import { InputModel } from "../Interfaces/globa";
+import { InputModel } from "../Interfaces/global";
 import TogglePasswordButton from "./UiElements/TogglePasswordButton";
 
 const Input = ({
@@ -10,6 +10,7 @@ const Input = ({
   id,
   className,
   value,
+  defaultValue = "",
   required,
   autoComplete,
 }: InputModel) => {
@@ -21,7 +22,7 @@ const Input = ({
         name={name}
         id={id}
         className={`${className} ${styles.input}`}
-        defaultValue={value}
+        defaultValue={defaultValue}
         required={required}
         autoComplete={autoComplete}
       />

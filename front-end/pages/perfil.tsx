@@ -7,33 +7,20 @@ import Input from "../src/components/Input";
 import Label from "../src/components/Label";
 import LogoutButton from "../src/components/UiElements/LogoutButton";
 import Message from "../src/components/UiElements/Message";
-import GetUser from "../src/services/GetUser";
 import updateUser from "../src/services/updateUser";
 import getValues from "../src/Utils/getValues";
-
-interface DataModel {
-  lastName: string;
-  firstName: string;
-  userName: string;
-  email: string;
-}
+import { UserContext } from "../src/components/UserContext";
+import useFetch from "../src/Hooks/useFetch";
 
 const perfil = () => {
   const { push } = useRouter();
-  const [data, setData] = React.useState<DataModel>();
+  const { user, setUser, userIsLogged } = React.useContext(UserContext);
+
   const [message, setMessage] = React.useState("");
   const [erro, setErro] = React.useState(null);
 
   React.useEffect(() => {
-    const userIsLogged = !!localStorage.getItem("token");
-    if (!userIsLogged) push("/");
-
-    async function loadData() {
-      const { data } = await GetUser();
-      if (data.user.message) push("/");
-      else setData(data.user);
-    }
-    loadData();
+    if (!userIsLogged) push("/login");
   }, []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -46,55 +33,53 @@ const perfil = () => {
 
     if (!response.userName) setErro(response);
     else {
-      setData(response);
+      setUser(response);
       setMessage("Dados atualizados!");
     }
   }
 
-  if (data)
-    return (
-      <>
-        <Form onSubmit={handleSubmit}>
-          <FormGroup>
-            <Label htmlFor="firstName">Nome</Label>
-            <Input id="firstName" name="firstName" value={data?.firstName} />
-          </FormGroup>
-          <FormGroup>
-            <Label htmlFor="lastName">Sobrenome</Label>
-            <Input id="lastName" name="lastName" value={data?.lastName} />
-          </FormGroup>
-          <FormGroup row>
-            <Label htmlFor="userName">Nome de usuário</Label>
-            <Input id="userName" name="userName" value={data?.userName} />
-          </FormGroup>
-          <FormGroup row>
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              name="email"
-              value={data?.email}
-              autoComplete="username"
-            />
-          </FormGroup>
-          <FormGroup row>
-            <Label htmlFor="password">Senha</Label>
-            <Input
-              id="password"
-              name="password"
-              type="password"
-              autoComplete="current-password"
-            />
-          </FormGroup>
-          <FormGroup row>
-            <Error erro={erro} />
-            <Message message={message} />
-            <button className="btn primary">Atualizar dados</button>
-          </FormGroup>
-        </Form>
-        <LogoutButton />
-      </>
-    );
-  return null;
+  return (
+    <>
+      <Form onSubmit={handleSubmit}>
+        <FormGroup>
+          <Label htmlFor="firstName">Nome</Label>
+          <Input id="firstName" name="firstName" value={user?.firstName} />
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor="lastName">Sobrenome</Label>
+          <Input id="lastName" name="lastName" value={user?.lastName} />
+        </FormGroup>
+        <FormGroup row>
+          <Label htmlFor="userName">Nome de usuário</Label>
+          <Input id="userName" name="userName" value={user?.userName} />
+        </FormGroup>
+        <FormGroup row>
+          <Label htmlFor="email">Email</Label>
+          <Input
+            id="email"
+            name="email"
+            value={user?.email}
+            autoComplete="username"
+          />
+        </FormGroup>
+        <FormGroup row>
+          <Label htmlFor="password">Senha</Label>
+          <Input
+            id="password"
+            name="password"
+            type="password"
+            autoComplete="current-password"
+          />
+        </FormGroup>
+        <FormGroup row>
+          <Error erro={erro} />
+          <Message message={message} />
+          <button className="btn primary">Atualizar dados</button>
+        </FormGroup>
+      </Form>
+      <LogoutButton />
+    </>
+  );
 };
 
 export default perfil;

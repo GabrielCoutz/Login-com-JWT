@@ -1,12 +1,13 @@
-import { DataModel } from "../Interfaces/globa";
+import { DataModel } from "../Interfaces/global";
 
 export default (formData: FormData) => {
-  const data: DataModel = {};
+  const object: DataModel = {};
 
   const entries = [...formData.entries()];
   entries.forEach(([key, value]) => {
     if (!key || !value || typeof value !== "string") return;
-    data[key] = value;
+    object[key] = value;
   });
-  return data;
+
+  return object;
 };

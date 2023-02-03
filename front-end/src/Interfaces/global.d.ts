@@ -16,6 +16,7 @@ interface InputModel {
   value?: string;
   required?: boolean;
   autoComplete?: string;
+  defaultValue?: string;
 }
 
 export interface LabelModel {

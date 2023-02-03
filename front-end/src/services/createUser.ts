@@ -1,4 +1,4 @@
-import { createUserResponse, DataModel } from "../Interfaces/globa";
+import { createUserResponse, DataModel } from "../Interfaces/global";
 
 export default async function (data: DataModel) {
   const response = await fetch("/api/user", {

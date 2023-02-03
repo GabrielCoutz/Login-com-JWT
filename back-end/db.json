@@ -15,6 +15,30 @@
       "userName": "teste.teste",
       "passwordHash": "$2b$12$rO/9IQk0HXtWYh73lMsHCO/Hg/MtaiP.ajyt9jsloDuARKvuhkhui",
       "id": 2
+    },
+    {
+      "firstName": "xampson",
+      "lastName": "silva",
+      "email": "xampson@gmail.com",
+      "userName": "xampson.silva",
+      "passwordHash": "$2b$12$Gygf4TqNKUffNLD0vqYi1u0AKHTAr1nbeli4UfoClBbXcnQGfJ5Sa",
+      "id": 3
+    },
+    {
+      "firstName": "fsdf",
+      "lastName": "dsfsdfs",
+      "email": "fdsfdsf@gmail.com",
+      "userName": "fsdf.dsfsdfs",
+      "passwordHash": "$2b$12$MbhEMds2Nyn17YuGsIpX1.9EZWC7P8CCWrvZZJ3EbPBXmhYS3FD2q",
+      "id": 4
+    },
+    {
+      "firstName": "gfghf",
+      "lastName": "hgfhfg",
+      "email": "hgfhg@gmail.com",
+      "userName": "gfghf.hgfhfg",
+      "passwordHash": "$2b$12$9bpM6QbZ4kNn.hnfK5nDOO8D1cKZnG6kMGkDvH5fzCq1wi01OSBCW",
+      "id": 5
     }
   ]
 }

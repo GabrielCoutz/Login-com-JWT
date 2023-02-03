@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../../styles/scss/Form.module.scss";
-import { FormModel } from "../Interfaces/globa";
+import { FormModel } from "../Interfaces/global";
 
 const Form = ({ children, onSubmit }: FormModel) => {
   return (
