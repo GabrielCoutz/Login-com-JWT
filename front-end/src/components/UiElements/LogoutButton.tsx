@@ -2,14 +2,14 @@ import Link from "next/link";
 import React from "react";
 import styles from "../../../styles/scss/LogoutButton.module.scss";
 import { UserContext } from "../UserContext";
+import Button from "./Button";
 
 const LogoutButton = () => {
-  const { setUser, setUserIsLogged } = React.useContext(UserContext);
+  const { setUser } = React.useContext(UserContext);
 
   function cleanData() {
     localStorage.removeItem("token");
     setUser(null);
-    setUserIsLogged(false);
   }
 
   return (
@@ -18,7 +18,7 @@ const LogoutButton = () => {
       onClick={cleanData}
       className={`${styles.logout} btn secondary`}
     >
-      Sair
+      <Button secondary>Sair</Button>
     </Link>
   );
 };

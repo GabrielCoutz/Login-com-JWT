@@ -1,29 +1,33 @@
 import { useRouter } from "next/router";
 import React from "react";
-import createUser from "../../services/createUser";
 import getValues from "../../Utils/getValues";
 import Error from "../UiElements/Error";
 import Form from "../Form";
 import Input from "../Input";
 import Label from "../Label";
 import FormGroup from "./FormGroup";
+import useFetch from "../../Hooks/useFetch";
+import Button from "../UiElements/Button";
 
 const CreateUserForm = () => {
-  const [erro, setErro] = React.useState({});
+  const { request, erro, loading } = useFetch();
   const { push } = useRouter();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setErro({});
 
     const inputData = getValues(e.currentTarget);
-    const response = await createUser(inputData);
+    const response = await request("/api/user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(inputData),
+    });
 
-    if (response.message) setErro(response);
-    else {
-      localStorage.setItem("createdAccountSuccess", "1");
-      push("/login");
-    }
+    if (!response) return;
+
+    push("/login");
   }
 
   return (
@@ -44,10 +48,10 @@ const CreateUserForm = () => {
           <Input
             id="email"
             name="email"
-            required
             type="email"
             placeholder="exemplo@gmail.com"
             autoComplete="username"
+            required
           />
         </FormGroup>
 
@@ -56,15 +60,17 @@ const CreateUserForm = () => {
           <Input
             id="password"
             name="password"
-            required
             type="password"
             autoComplete="current-password"
+            required
           />
         </FormGroup>
 
         <FormGroup row>
-          <Error erro={erro} />
-          <button className="btn primary">Cadastrar</button>
+          {erro && <Error erro={erro} />}
+          <Button primary disabled={loading}>
+            Cadastrar
+          </Button>
         </FormGroup>
       </Form>
     </>

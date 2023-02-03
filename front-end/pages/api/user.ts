@@ -18,7 +18,6 @@ export default async function handler(
     case "GET":
       response = await request(GET_USER, undefined, token);
       const { data } = await response.json();
-      console.log(data);
 
       res.status(200).json(data.user);
       break;

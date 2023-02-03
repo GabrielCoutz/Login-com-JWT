@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import React from "react";
-import LoginUser from "../../services/LoginUser";
 import getValues from "../../Utils/getValues";
 import Error from "../UiElements/Error";
 import Form from "../Form";
@@ -8,24 +7,30 @@ import Input from "../Input";
 import Label from "../Label";
 import FormGroup from "./FormGroup";
 import Message from "../UiElements/Message";
-import useFetch from "../../Hooks/useFetch";
+import useFetch, { responseHasToken } from "../../Hooks/useFetch";
 import Button from "../UiElements/Button";
 
 const LoginForm = () => {
   const route = useRouter();
-  const { request, erro, message, loading, token } = useFetch();
-
+  const { request, erro, message, loading } = useFetch();
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const inputData = getValues(e.currentTarget);
-    await request(LoginUser, inputData);
+    const response = await request("/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(inputData),
+    });
 
-    if (!token) return;
+    if (!response || !responseHasToken(response)) return;
 
-    localStorage.setItem("token", token);
+    localStorage.setItem("token", response.token);
     route.push("/perfil");
   }
+  console.log(message);
 
   return (
     <>
@@ -36,10 +41,10 @@ const LoginForm = () => {
           <Input
             id="email"
             name="email"
-            required
             type="email"
             autoComplete="username"
-            defaultValue="gabriel@gmail.com"
+            defaultValue="gabrieldsadsa@gmail.com"
+            required
           />
         </FormGroup>
 
@@ -48,12 +53,12 @@ const LoginForm = () => {
           <Input
             id="password"
             name="password"
-            required
             type="password"
             autoComplete="current-password"
             defaultValue="gabriel"
+            required
           />
-        </FormGroup>
+        </FormGroup>  
 
         <FormGroup row>
           {erro && <Error erro={erro} />}

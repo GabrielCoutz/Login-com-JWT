@@ -7,12 +7,10 @@ import Input from "../src/components/Input";
 import Label from "../src/components/Label";
 import LogoutButton from "../src/components/UiElements/LogoutButton";
 import Message from "../src/components/UiElements/Message";
-import updateUser from "../src/services/updateUser";
 import getValues from "../src/Utils/getValues";
 import { UserContext } from "../src/components/UserContext";
-import useFetch from "../src/Hooks/useFetch";
+import useFetch, { responseHasData } from "../src/Hooks/useFetch";
 import Button from "../src/components/UiElements/Button";
-import GetUser from "../src/services/GetUser";
 
 const perfil = () => {
   const { push } = useRouter();
@@ -20,13 +18,16 @@ const perfil = () => {
   const { user, setUser } = React.useContext(UserContext);
 
   React.useEffect(() => {
-    const tokenExist = !!localStorage.getItem("token");
-    if (!tokenExist) return;
+    const token = localStorage.getItem("token");
+    if (!token) push("/login");
 
     async function loadData() {
-      const data = await request(GetUser);
-      console.log(erro);
-
+      const data = await request("/api/user", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if (!data) push("/login");
       setUser(data);
     }
@@ -35,63 +36,73 @@ const perfil = () => {
   }, []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    const token = localStorage.getItem("token");
     e.preventDefault();
 
     const formatedData = getValues(e.currentTarget);
-    const newData = await request(updateUser, formatedData);
+    const newData = await request("/api/user", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(formatedData),
+    });
 
-    if (!newData?.userName) return;
+    if (!newData || !responseHasData(newData)) return;
     setUser(newData);
 
     setMessage("Dados atualizados!");
   }
 
-  return (
-    <>
-      <Form onSubmit={handleSubmit}>
-        <FormGroup>
-          <Label htmlFor="firstName">Nome</Label>
-          <Input id="firstName" name="firstName" value={user.firstName} />
-        </FormGroup>
-        <FormGroup>
-          <Label htmlFor="lastName">Sobrenome</Label>
-          <Input id="lastName" name="lastName" value={user.lastName} />
-        </FormGroup>
-        <FormGroup row>
-          <Label htmlFor="userName">Nome de usuário</Label>
-          <Input id="userName" name="userName" value={user.userName} />
-        </FormGroup>
-        <FormGroup row>
-          <Label htmlFor="email">Email</Label>
-          <Input
-            id="email"
-            name="email"
-            value={user.email}
-            autoComplete="username"
-          />
-        </FormGroup>
+  if (user)
+    return (
+      <>
+        <Form onSubmit={handleSubmit}>
+          <FormGroup>
+            <Label htmlFor="firstName">Nome</Label>
+            <Input id="firstName" name="firstName" value={user.firstName} />
+          </FormGroup>
+          <FormGroup>
+            <Label htmlFor="lastName">Sobrenome</Label>
+            <Input id="lastName" name="lastName" value={user.lastName} />
+          </FormGroup>
+          <FormGroup row>
+            <Label htmlFor="userName">Nome de usuário</Label>
+            <Input id="userName" name="userName" value={user.userName} />
+          </FormGroup>
+          <FormGroup row>
+            <Label htmlFor="email">Email</Label>
+            <Input
+              id="email"
+              name="email"
+              value={user.email}
+              autoComplete="username"
+            />
+          </FormGroup>
 
-        <FormGroup row>
-          <Label htmlFor="password">Senha</Label>
-          <Input
-            id="password"
-            name="password"
-            type="password"
-            autoComplete="current-password"
-          />
-        </FormGroup>
+          <FormGroup row>
+            <Label htmlFor="password">Senha</Label>
+            <Input
+              id="password"
+              name="password"
+              type="password"
+              autoComplete="current-password"
+            />
+          </FormGroup>
 
-        <FormGroup row>
-          {erro && <Error erro={erro} />}
-          {message && <Message message={message} />}
-          <Button primary disabled={loading}>
-            Atualizar dados
-          </Button>
-        </FormGroup>
-      </Form>
-      <LogoutButton />
-    </>
-  );
+          <FormGroup row>
+            {erro && <Error erro={erro} />}
+            {message && <Message message={message} />}
+            <Button primary disabled={loading}>
+              Atualizar dados
+            </Button>
+          </FormGroup>
+        </Form>
+        <LogoutButton />
+      </>
+    );
+  return null;
 };
 
 export default perfil;

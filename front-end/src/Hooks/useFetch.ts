@@ -1,5 +1,4 @@
 import React from "react";
-import { DataModel } from "../Interfaces/global";
 
 interface AlertModel {
   message: string;
@@ -16,14 +15,10 @@ interface UserModel {
   email: string;
 }
 
-interface RequestModel {
-  response: UserModel | TokenModel;
-}
-
 const responseHasErro = (response: unknown): response is AlertModel =>
   !!(response && typeof response === "object" && "message" in response);
 
-const responseHasData = (response: unknown): response is UserModel =>
+export const responseHasData = (response: unknown): response is UserModel =>
   !!(
     response &&
     typeof response === "object" &&
@@ -33,47 +28,40 @@ const responseHasData = (response: unknown): response is UserModel =>
       "password" in response)
   );
 
-const responseHasToken = (response: unknown): response is TokenModel =>
+export const responseHasToken = (response: unknown): response is TokenModel =>
   !!(response && typeof response === "object" && "token" in response);
+
+type endpoints = "/api/user" | "/api/login";
 
 const useFetch = () => {
   const [message, setMessage] = React.useState("");
   const [erro, setErro] = React.useState("");
-  const [data, setData] = React.useState<UserModel | null>(null);
   const [loading, setLoading] = React.useState(false);
-  const [token, setToken] = React.useState("");
 
-  const request = async (fetchFunction: Function, payload: DataModel = {}) => {
+  const request = async (
+    url: endpoints,
+    options: RequestInit | undefined
+  ): Promise<UserModel | TokenModel> => {
     setLoading(true);
-    setMessage("");
+    setErro("");
 
-    const response = await fetchFunction(payload);
+    const response = await fetch(url, options);
+    let json = await response.json();
 
-    if (responseHasErro(response)) {
-      setErro(response.message);
-      console.log(erro);
-      // setData(null);
+    if (responseHasErro(json)) {
+      setErro(json.message);
+      json = null;
     }
 
-    // else if (responseHasData(response)) {
-    //   setData(response);
-    //   setErro("");
-    //   setToken("");
-    //   setMessage("");
-    // } else if (responseHasToken(response)) {
-    //   setToken(response.token);
-    // }
-
     setLoading(false);
+    return json;
   };
 
   return {
     message,
     erro,
-    data,
-    request,
     loading,
-    token,
+    request,
     setMessage,
   };
 };

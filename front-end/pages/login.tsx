@@ -2,24 +2,24 @@ import { useRouter } from "next/router";
 import React from "react";
 import LoginForm from "../src/components/Forms/LoginForm";
 import useFetch from "../src/Hooks/useFetch";
-import GetUser from "../src/services/GetUser";
 
 const login = () => {
-  const { request, erro, data } = useFetch();
+  const { request } = useFetch();
   const { push } = useRouter();
 
-  async function autoLogin() {
-    await request(GetUser);
-    console.log(erro, data);
-
-    // if (data) push("/perfil");
+  async function autoLogin(token: string) {
+    const data = await request("/api/user", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (data) push("/perfil");
   }
 
   React.useEffect(() => {
-    const tokenExist = !!localStorage.getItem("token");
-    if (!tokenExist) return;
-
-    autoLogin();
+    const token = localStorage.getItem("token");
+    if (token) autoLogin(token);
   }, []);
 
   return <LoginForm />;
