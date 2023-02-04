@@ -18,7 +18,7 @@ const LogoutButton = () => {
       onClick={cleanData}
       className={`${styles.logout} btn secondary`}
     >
-      <Button secondary>Sair</Button>
+      <Button primary>Sair</Button>
     </Link>
   );
 };

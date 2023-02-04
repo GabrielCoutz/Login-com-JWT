@@ -30,7 +30,6 @@ const LoginForm = () => {
     localStorage.setItem("token", response.token);
     route.push("/perfil");
   }
-  console.log(message);
 
   return (
     <>
@@ -58,7 +57,7 @@ const LoginForm = () => {
             defaultValue="gabriel"
             required
           />
-        </FormGroup>  
+        </FormGroup>
 
         <FormGroup row>
           {erro && <Error erro={erro} />}

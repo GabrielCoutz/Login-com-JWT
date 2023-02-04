@@ -5,12 +5,12 @@ import Form from "../src/components/Form";
 import FormGroup from "../src/components/Forms/FormGroup";
 import Input from "../src/components/Input";
 import Label from "../src/components/Label";
-import LogoutButton from "../src/components/UiElements/LogoutButton";
 import Message from "../src/components/UiElements/Message";
 import getValues from "../src/Utils/getValues";
 import { UserContext } from "../src/components/UserContext";
 import useFetch, { responseHasData } from "../src/Hooks/useFetch";
 import Button from "../src/components/UiElements/Button";
+import Dangerzone from "../src/components/Dangerzone";
 
 const perfil = () => {
   const { push } = useRouter();
@@ -99,7 +99,7 @@ const perfil = () => {
             </Button>
           </FormGroup>
         </Form>
-        <LogoutButton />
+        <Dangerzone />
       </>
     );
   return null;

@@ -7,6 +7,8 @@ interface ButtonModel {
   secondary?: boolean;
   children: string;
   disabled?: boolean;
+  danger?: boolean;
+  onClick?: React.MouseEventHandler;
 }
 
 const Button = ({
@@ -15,13 +17,19 @@ const Button = ({
   secondary,
   className = "",
   disabled,
+  danger,
+  onClick,
 }: ButtonModel) => {
-  const classes: string = `${styles.btn} ${primary ? styles.primary : ""} ${
-    secondary ? styles.secondary : ""
-  }`;
+  const classes: string = `${styles.btn} ${danger ? styles.danger : ""} ${
+    primary ? styles.primary : ""
+  } ${secondary ? styles.secondary : ""}`;
 
   return (
-    <button className={classes + className} disabled={disabled}>
+    <button
+      className={classes + className}
+      disabled={disabled}
+      onClick={onClick}
+    >
       {disabled ? "Carregando..." : children}
     </button>
   );

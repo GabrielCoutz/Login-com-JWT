@@ -1,0 +1,10 @@
+@import "variables";
+
+.dangerZone {
+  margin: 2rem auto 0 auto;
+  padding: 2rem;
+  background: #ffe2e2;
+  display: grid;
+  max-width: 400px;
+  border-radius: $border-radius;
+}
