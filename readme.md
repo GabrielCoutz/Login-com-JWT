@@ -14,8 +14,7 @@ Minha intenção é desenvolver diversas habilidades e por em prática meus conh
 ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
 ![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)
 
-Atualização diárias sobre o andamento:
-
+Venha ver como foi o andamento:
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/gabrielcoutz/)
 
 <hr>
