@@ -1,6 +1,6 @@
 # Projeto finalizado! 04/02/2023
 
-Este projeto é um sistema fullstack de login, com possibilidade de alterar, atualizar e deletar dados na tela de perfil.
+Este projeto ```FULLSTACK``` é um sistema de login, com possibilidade de alterar, atualizar e deletar dados na tela de perfil.
 
 Minha intenção é desenvolver diversas habilidades e por em prática meus conhecimentos em:
 
