@@ -42,7 +42,6 @@ const LoginForm = () => {
             name="email"
             type="email"
             autoComplete="username"
-            defaultValue="gabrieldsadsa@gmail.com"
             required
           />
         </FormGroup>
@@ -54,7 +53,6 @@ const LoginForm = () => {
             name="password"
             type="password"
             autoComplete="current-password"
-            defaultValue="gabriel"
             required
           />
         </FormGroup>

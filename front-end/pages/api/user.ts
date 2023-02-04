@@ -1,5 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { UPDATE_USER, GET_USER, CREATE_USER } from "../../src/Graphql/queries";
+import {
+  UPDATE_USER,
+  GET_USER,
+  CREATE_USER,
+  DELETE_USER,
+} from "../../src/Graphql/queries";
 import request from "../../src/Utils/request";
 
 type Data = {
@@ -47,6 +52,16 @@ export default async function handler(
       break;
 
     case "DELETE":
+      response = await request(DELETE_USER, undefined, token);
+
+      if (response.status !== 200)
+        res.status(response.status).json(await response.json());
+
+      json = await response.json();
+      if (json.errors) res.status(200).json(json.errors);
+
+      res.status(200).json(json.data.deleteUser);
+
       break;
 
     default:

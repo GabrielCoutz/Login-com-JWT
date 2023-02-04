@@ -7,4 +7,15 @@
   display: grid;
   max-width: 400px;
   border-radius: $border-radius;
+
+  .atencao {
+    text-transform: uppercase;
+    color: $red;
+    font-weight: bold;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-around;
+  }
 }

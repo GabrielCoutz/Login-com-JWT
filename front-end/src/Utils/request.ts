@@ -2,8 +2,8 @@ export default async (
   query: string | FormData,
   variables?: Object,
   token?: string
-) =>
-  await fetch(process.env.API_URL || "", {
+) => {
+  return await fetch(process.env.API_URL || "", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -14,3 +14,4 @@ export default async (
       variables,
     }),
   });
+};

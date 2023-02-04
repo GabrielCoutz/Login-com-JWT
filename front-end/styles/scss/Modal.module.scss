@@ -13,6 +13,8 @@
   opacity: 0;
   transition: 0.3s all;
   background-color: #00000057;
+  backdrop-filter: blur(4px);
+  z-index: 1;
 
   &.active {
     pointer-events: all;
@@ -21,5 +23,17 @@
 
   .modal {
     background-color: $white;
+    padding: 2rem;
+    border-radius: $border-radius;
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin: 1rem 0;
+      text-align: center;
+    }
   }
 }

@@ -44,16 +44,25 @@ const useFetch = () => {
   ): Promise<UserModel | TokenModel> => {
     setLoading(true);
     setErro("");
+    let json;
 
-    const response = await fetch(url, options);
-    let json = await response.json();
+    try {
+      const response = await fetch(url, options);
+      json = await response.json();
 
-    if (responseHasErro(json)) {
-      setErro(json.message);
+      if (json?.errors?.length) throw new Error(json.errors[0].message);
+
+      if (responseHasErro(json)) {
+        throw new Error(json.message);
+      }
+    } catch (error) {
+      setErro(`${error}`);
       json = null;
+    } finally {
+      setLoading(false);
     }
+    console.log(erro);
 
-    setLoading(false);
     return json;
   };
 
@@ -63,6 +72,7 @@ const useFetch = () => {
     loading,
     request,
     setMessage,
+    setErro,
   };
 };
 

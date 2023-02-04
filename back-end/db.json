@@ -1,28 +1,3 @@
 {
-  "users": [
-    {
-      "firstName": "gabriel",
-      "lastName": "Coutinho",
-      "email": "gabriel@gmail.com",
-      "userName": "gabriel.coutinhoo",
-      "passwordHash": "$2b$12$CaIYgWmFhnc6sfYj5dnhnuLsTWwMm.J8O2kJl9kbYLAf.CVp2ttq6",
-      "id": 1
-    },
-    {
-      "firstName": "ff",
-      "lastName": "fdsf",
-      "email": "dsfds@gmail.com",
-      "userName": "ff.fdsf",
-      "passwordHash": "$2b$12$Q8cFErJou0u4hM.iQiF3Auv0GIcTUiN3KXIrsLq2QpkOigD42mSR.",
-      "id": 2
-    },
-    {
-      "firstName": "fdsfsd",
-      "lastName": "fdsfd",
-      "email": "aaaa@gmail.com",
-      "userName": "fdsfsd.fdsfd",
-      "passwordHash": "$2b$12$Wo8AbcKxGA4cMRd7z5oBdO1WaVODARi3eEd52hUzNlOyzKdz2KQnC",
-      "id": 3
-    }
-  ]
+  "users": []
 }
