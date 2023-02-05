@@ -1,6 +1,6 @@
-# Projeto em desenvolvimento
+# Projeto finalizado! 04/02/2023
 
-Este projeto é um sistema simples de login, com possibilidade de alterar, atualizar e deletar dados na tela de perfil.
+Este projeto ```FULLSTACK``` é um sistema de login, com possibilidade de alterar, atualizar e deletar dados na tela de perfil.
 
 Minha intenção é desenvolver diversas habilidades e por em prática meus conhecimentos em:
 
@@ -14,8 +14,7 @@ Minha intenção é desenvolver diversas habilidades e por em prática meus conh
 ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
 ![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)
 
-Atualização diárias sobre o andamento:
-
+Venha ver como foi o andamento:
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/gabrielcoutz/)
 
 <hr>
