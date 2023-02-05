@@ -1,3 +1,20 @@
 {
-  "users": []
+  "users": [
+    {
+      "firstName": "Gabriel",
+      "lastName": "Cassiano",
+      "email": "gabriel.coutinho.cassiano@gmail.com",
+      "userName": "Gabriel.Cassiano",
+      "passwordHash": "$2b$12$CQx9tyZ1zpb9HROLb9TsZO2ko/j16DtuYM1tpP34FwT3GLDmiOv/u",
+      "id": 1
+    },
+    {
+      "firstName": "Gabriel",
+      "lastName": "Cassiano",
+      "email": "gabriel.coutinho.cassfdfsdiano@gmail.com",
+      "userName": "Gabriel.Cassiano",
+      "passwordHash": "$2b$12$Ixkr7yCcU99BwS1aWm4rvuGC/hcxR9awWoG3IkyPSaNiSDlphMy7G",
+      "id": 2
+    }
+  ]
 }

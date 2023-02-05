@@ -26,6 +26,11 @@ export default async function handler(
   const handleResponse = async (response: Response) => {
     if (!responseIs200(response))
       res.status(response.status).json(await response.json());
+
+    json = await response.json();
+    handleJson(json);
+
+    return json;
   };
 
   const handleJson = (json: any) => {
@@ -42,36 +47,31 @@ export default async function handler(
 
     case "PATCH":
       response = await request(UPDATE_USER, { data: req.body }, token);
-      handleResponse(response);
-
-      json = await response.json();
-      handleJson(json);
+      json = await handleResponse(response);
 
       res.status(200).json(json.data.updateUser);
       break;
 
     case "POST":
       response = await request(CREATE_USER, { data: req.body });
-      handleResponse(response);
-
-      json = await response.json();
-      handleJson(json);
+      json = await handleResponse(response);
 
       res.status(200).json(json.data.createUser);
       break;
 
     case "DELETE":
       response = await request(DELETE_USER, undefined, token);
-      handleResponse(response);
-
-      json = await response.json();
-      handleJson(json);
+      json = await handleResponse(response);
 
       res.status(200).json(json.data.deleteUser);
 
       break;
 
     default:
+      const methodNotSupportedResponse: Data = {
+        name: "Método não suportado.",
+      };
+      res.status(405).json(methodNotSupportedResponse);
       break;
   }
 }
