@@ -1,5 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { LOGIN_USER } from "../../src/Graphql/queries";
+import {
+  jsonHasError,
+  responseIs200,
+} from "../../src/Utils/handleApiResponses";
 import request from "../../src/Utils/request";
 
 type Data = {
@@ -12,11 +16,11 @@ export default async function handler(
 ) {
   const response = await request(LOGIN_USER, { data: req.body });
 
-  if (response.status !== 200)
+  if (!responseIs200(response))
     res.status(response.status).json(await response.json());
 
   const json = await response.json();
-  if (json.errors) res.status(200).json(json.errors);
+  if (jsonHasError(json)) res.status(200).json(json.errors);
 
   res.status(200).json(json.data.login);
 }

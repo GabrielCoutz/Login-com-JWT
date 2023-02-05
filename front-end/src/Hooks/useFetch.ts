@@ -61,7 +61,6 @@ const useFetch = () => {
     } finally {
       setLoading(false);
     }
-    console.log(erro);
 
     return json;
   };

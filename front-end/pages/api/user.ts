@@ -5,6 +5,10 @@ import {
   CREATE_USER,
   DELETE_USER,
 } from "../../src/Graphql/queries";
+import {
+  jsonHasError,
+  responseIs200,
+} from "../../src/Utils/handleApiResponses";
 import request from "../../src/Utils/request";
 
 type Data = {
@@ -19,6 +23,15 @@ export default async function handler(
   let json;
   const token = req.headers.authorization;
 
+  const handleResponse = async (response: Response) => {
+    if (!responseIs200(response))
+      res.status(response.status).json(await response.json());
+  };
+
+  const handleJson = (json: any) => {
+    if (jsonHasError(json)) res.status(200).json(json.errors);
+  };
+
   switch (req.method) {
     case "GET":
       response = await request(GET_USER, undefined, token);
@@ -29,36 +42,30 @@ export default async function handler(
 
     case "PATCH":
       response = await request(UPDATE_USER, { data: req.body }, token);
-
-      if (response.status !== 200)
-        res.status(response.status).json(await response.json());
+      handleResponse(response);
 
       json = await response.json();
-      if (json.errors) res.status(200).json(json.errors);
+      handleJson(json);
 
       res.status(200).json(json.data.updateUser);
       break;
 
     case "POST":
       response = await request(CREATE_USER, { data: req.body });
-
-      if (response.status !== 200)
-        res.status(response.status).json(await response.json());
+      handleResponse(response);
 
       json = await response.json();
-      if (json.errors) res.status(200).json(json.errors);
+      handleJson(json);
 
       res.status(200).json(json.data.createUser);
       break;
 
     case "DELETE":
       response = await request(DELETE_USER, undefined, token);
-
-      if (response.status !== 200)
-        res.status(response.status).json(await response.json());
+      handleResponse(response);
 
       json = await response.json();
-      if (json.errors) res.status(200).json(json.errors);
+      handleJson(json);
 
       res.status(200).json(json.data.deleteUser);
 
